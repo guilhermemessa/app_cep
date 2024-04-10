@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.0
-  protobuf: ^3.0.0
+  protobuf: ^2.1.0
   cupertino_icons: ^1.0.2
   http: ^0.13.3
   flutter_map: ^0.13.0
