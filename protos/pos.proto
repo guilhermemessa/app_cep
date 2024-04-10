@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package pos;
+
+service PosService {
+    rpc CreatePos (CreatePosRequest) returns (CreatePosResponse);
+    rpc GetPos (GetPosRequest) returns (GetPosResponse);
+    rpc UpdatePos (UpdatePosRequest) returns (common.Empty);
+    rpc DeletePos (DeletePosRequest) returns (common.Empty);
+    rpc ListPos (ListPosRequest) returns (ListPosResponse);
+}
+
+message Pos {
+  string id = 1;
+  string identifier = 2;
+  string acquirer = 3;
+  string companyDocument = 4; // CNPJ
+  repeated string paymentScheme = 5;
+  Status status = 6;
+  int32 percentage = 7;
+  string createdAt = 8;
+  string updatedAt = 9;
+  string userID = 10;
+}
+
+message CreatePosRequest {
+  string identifier = 1;
+  string acquirer = 2;
+  string userID = 3;
+  string companyDocument = 4; // CNPJ
+  repeated string paymentScheme = 5;
+  Status status = 6;
+  int32 percentage = 7;
+}
+
+message CreatePosResponse {
+  Pos pos = 1;
+}
+
+message GetPosRequest {
+  string id = 1;
+  string userID = 2;
+}
+
+message GetPosResponse {
+  Pos pos = 1;
+}
+
+message UpdatePosRequest {
+  string id = 1;
+  string identifier = 2;
+  string acquirer = 3;
+  string companyDocument = 4; // CNPJ
+  repeated string paymentScheme = 5;
+  Status status = 6;
+  string userID = 7;
+  int32 percentage = 8;
+}
+
+message DeletePosRequest {
+  string id = 1;
+  string userID = 2;
+}
+
+message ListPosRequest {
+  string companyDocument = 1;
+  int32 page = 2;
+  int32 pageSize = 3;
+  string userID = 4;
+}
+
+message ListPosResponse {
+  repeated Pos pos = 1;
+}
+
+enum Status {
+  POS_STATUS_ACTIVE = 0;
+  POS_STATUS_INACTIVE = 1;
+}
