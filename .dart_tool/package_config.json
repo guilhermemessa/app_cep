@@ -351,9 +351,9 @@
     },
     {
       "name": "protobuf",
-      "rootUri": "file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/protobuf-3.1.0",
+      "rootUri": "file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/protobuf-2.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.12"
     },
     {
       "name": "protoc_builder",
@@ -512,7 +512,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2024-04-10T16:22:52.378716Z",
+  "generated": "2024-04-10T16:31:07.188826Z",
   "generator": "pub",
   "generatorVersion": "3.2.6"
 }
