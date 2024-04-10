@@ -43,4 +43,4 @@ jobs:
         git add .
         git commit -m "Update Dart files generated from Proto"
         git tag -a v1.0.0+${{ github.run_number }} -m "Version 1.0.0"
-        git push
+        git push origin v1.0.0+${{ github.run_number }}
