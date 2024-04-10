@@ -17,4 +17,4 @@ targets:
           # (Default: ["proto/"])
           proto_paths:
             - "protos/"
-          use_installed_protoc: true 
+          use_installed_protoc: false 
