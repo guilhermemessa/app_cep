@@ -20,6 +20,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    # Use installed Dart SDK
+    - name: Use installed Dart SDK
+      run: export PATH="$PATH":"/path/to/dart-sdk/bin"  # Substitua "/path/to/dart-sdk/bin" pelo caminho real do SDK do Dart
+
     # Instalar o SDK do Flutter
     - name: Install Flutter SDK
       uses: subosito/flutter-action@v2
@@ -31,12 +35,4 @@ jobs:
       run: flutter pub get
 
     - name: Run protoc_builder
-      run: flutter pub run build_runner build --delete-conflicting-outputs
-
-    - name: Commit and push changes
-      run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
-        git add .
-        git commit -m "Update Dart files generated from Proto"
-        git push
+      run:
