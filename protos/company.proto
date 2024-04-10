@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+import "common.proto";
+import "customer.proto";
+
+package company;
+
+service CompanyService {
+    rpc CreateCompany (CreateCompanyRequest) returns (CreateCompanyResponse);
+    rpc GetCompany (GetCompanyRequest) returns (GetCompanyResponse);
+    rpc UpdateCompany (UpdateCompanyRequest) returns (common.Empty);
+    rpc DeleteCompany (DeleteCompanyRequest) returns (common.Empty);
+    rpc ListCompany (ListCompanyRequest) returns (ListCompanyResponse);
+}
+
+message Company {
+  string id = 1;
+  string userID = 2;
+  string document = 3; // CNPJ
+  string name = 4;
+  customer.Address address = 5;
+  string createdAt = 11;
+  string updatedAt = 12;
+}
+
+message CreateCompanyRequest {
+  string userID = 1;
+  string document = 2;
+  string name = 3;
+  customer.Address address = 4;
+}
+
+message CreateCompanyResponse {
+  Company company = 1;
+}
+
+message GetCompanyRequest {
+  string userID = 1;
+  string document = 2;
+}
+
+message GetCompanyResponse {
+  Company company = 1;
+}
+
+message UpdateCompanyRequest {
+  string userID = 1;
+  string document = 2;
+  optional string name = 3;
+  optional customer.Address address = 4;
+}
+
+message DeleteCompanyRequest {
+  string userID = 1;
+  string document = 2;
+}
+
+message ListCompanyRequest {
+  string userID = 1;
+  uint64 page = 2;
+  uint64 pageSize = 3;
+}
+
+message ListCompanyResponse {
+  repeated Company companies = 1;
+  int64 totalRecords = 2;
+}
