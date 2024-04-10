@@ -17,7 +17,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    # Baixar e configurar manualmente o SDK do Dart
+    # Instalar o SDK do Dart diretamente dos repositórios oficiais
     - name: Setup Dart SDK
       run: |
         sudo apt-get update
