@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package user;
+
+service UserService {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+  rpc ChangePassword (ChangePasswordRequest) returns (common.Empty);
+}
+
+message GetUserRequest {
+  string userID = 1;
+}
+
+message GetUserResponse {
+  string userID = 1;
+  StatusEvent status = 2;
+  string createdAt = 3;
+  string updatedAt = 4;
+  string canceledAt = 5;
+  CancelReason cancelReason = 6;
+  repeated BlockReason blockReason = 7;
+}
+
+message ChangePasswordRequest{
+  string userID = 1;
+  string newPassword = 2;
+  string authorizerID = 3;
+}
+
+
+// Enums
+
+enum CancelReason {
+  CANCEL_REASON_NONE = 0;
+  CANCEL_REASON_USER_REQUEST = 1;
+  CANCEL_REASON_FRAUD = 2;
+  CANCEL_REASON_OTHER= 3;
+}
+
+enum BlockReason{
+  BLOCK_REASON_NONE = 0;
+  BLOCK_REASON_EXCEEDED_MAX_ATTEMPTS = 1;
+  BLOCK_REASON_FRAUD = 2;
+  BLOCK_REASON_OTHER = 3;
+}
+
+enum StatusEvent{
+  STATUS_EVENT_NONE = 0;
+  STATUS_EVENT_NOT_VALIDATED = 1;
+  STATUS_EVENT_ACTIVE = 2;
+  STATUS_EVENT_CANCELED = 3;
+}
+
+enum SecurityEvent {
+  SECURITY_EVENT_NONE = 0;  // Não Existe
+  SECURITY_EVENT_PASSWORD_CREATED = 1;
+  SECURITY_EVENT_CHANGE_PASSWORD = 2;
+  SECURITY_EVENT_CHANGE_OTP = 3;
+}
