@@ -6,8 +6,11 @@ on:
       - main
       - develop
   workflow_dispatch:
-    paths:
-      - 'proto/**'
+    inputs:
+      path:
+        description: 'Path to trigger workflow'
+        required: false
+        default: 'proto/**'
 
 jobs:
   build:
