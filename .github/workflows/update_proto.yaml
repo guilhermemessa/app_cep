@@ -26,8 +26,13 @@ jobs:
         sudo apt-get update
         sudo apt-get install dart
 
+    - name: Install Flutter SDK
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '2.10.5'  # Substitua pela versão do Flutter que você está usando
+
     - name: Run protoc_builder
-      run: dart run build_runner build --delete-conflicting-outputs
+      run: flutter pub run build_runner build --delete-conflicting-outputs
 
     - name: Commit and push changes
       run: |
