@@ -30,7 +30,6 @@ jobs:
       with:
         flutter-version: '3.16.9'  # Substitua pela versão do Flutter que você está usando
 
-    # Restante do seu fluxo de trabalho
     - name: Flutter pub get
       run: flutter pub get
 
@@ -44,5 +43,4 @@ jobs:
         git add .
         git commit -m "Update Dart files generated from Proto"
         git push
-      env:
-        GH_TOKEN: ${{secrets.GH_TOKEN}}
+
