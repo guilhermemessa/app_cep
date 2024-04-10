@@ -17,11 +17,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    # Instalar o SDK do Dart usando a ação de configuração do Dart
+    # Baixar e configurar manualmente o SDK do Dart
     - name: Setup Dart SDK
-      uses: dart-lang/setup-dart@v1
-      with:
-        sdk: '3.2.6'  # Versão específica do SDK do Dart
+      run: |
+        wget https://storage.googleapis.com/dart-archive/channels/stable/release/3.2.6/sdk/dartsdk-linux-x64-release.zip
+        unzip dartsdk-linux-x64-release.zip
+        export PATH="$PATH:`pwd`/dart-sdk/bin"
 
     # Instalar o SDK do Flutter
     - name: Install Flutter SDK
