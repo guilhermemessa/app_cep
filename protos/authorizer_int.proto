@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package authorizer_int;
+
+service AuthorizerIntService {
+  rpc ConfirmAuthorizer(ConfirmAuthorizerRequest) returns (ConfirmAuthorizerResponse) {}
+}
+
+message ConfirmAuthorizerRequest{
+  string authorizerID = 1;
+  string userID = 2;
+  string process = 3;
+}
+
+message ConfirmAuthorizerResponse{
+  AuthorizationStatus status = 3;
+}
+
+enum AuthorizationStatus{
+  AUTHORIZATION_STATUS_NONE = 0;
+  AUTHORIZATION_STATUS_CONFIRMED = 1;
+  AUTHORIZATION_STATUS_NOT_CONFIRMED = 2;
+  AUTHORIZATION_STATUS_EXPIRED = 3;
+  AUTHORIZATION_STATUS_CANCELED = 4;
+
+}

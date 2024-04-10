@@ -1,0 +1,52 @@
+name: Build Proto to Dart
+
+on:
+  push:
+    branches:
+      - main
+      - develop  # Adicione outras branches aqui conforme necessário
+  workflow_dispatch:
+    paths:
+      - 'proto/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Dart SDK
+      uses: subosito/setup-dart@v1
+
+    - name: Install dependencies
+      run: dart pub get
+
+    - name: Run protoc_builder
+      run: dart run build_runner build --delete-conflicting-outputs
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add .
+        git commit -m "Update Dart files generated from Proto"
+        git push
+
+    - name: Get current branch name
+      id: get_branch_name
+      run: echo "::set-output name=branch_name::$(echo ${GITHUB_REF#refs/heads/})"
+
+    - name: Read current version
+      id: read_version
+      run: echo "::set-output name=version::$(cat version_${{ steps.get_branch_name.outputs.branch_name }}.txt || echo '0')"
+
+    - name: Increment version
+      id: increment_version
+      run: echo "::set-output name=version::$((${{ steps.read_version.outputs.version }} + 1))"
+
+    - name: Create version tag
+      run: |
+        git tag v${{ steps.increment_version.outputs.version }}-${{ steps.get_branch_name.outputs.branch_name }}
+        git push origin --tags
