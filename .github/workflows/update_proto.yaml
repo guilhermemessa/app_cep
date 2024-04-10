@@ -20,12 +20,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    # Utilizar a instalação existente do SDK do Dart
-    - name: Use installed Dart SDK
-      uses: dart-lang/setup-dart@v1
-      with:
-        sdk: '3.2.6'  # Especifique a versão correta do SDK do Dart já instalada
-
     # Instalar o SDK do Flutter
     - name: Install Flutter SDK
       uses: subosito/flutter-action@v2
