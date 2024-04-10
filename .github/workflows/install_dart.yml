@@ -1,0 +1,21 @@
+name: Install Dart SDK
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  install-dart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Dart SDK
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: '3.2.6'
+
+      - name: Verify Dart SDK version
+        run: dart --version

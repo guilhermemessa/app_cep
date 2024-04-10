@@ -223,9 +223,9 @@ proj4dart
 file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/proj4dart-2.1.0/
 file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/proj4dart-2.1.0/lib/
 protobuf
-2.12
-file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/protobuf-2.1.0/
-file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/protobuf-2.1.0/lib/
+2.19
+file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/protobuf-3.1.0/
+file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/protobuf-3.1.0/lib/
 protoc_builder
 2.16
 file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/protoc_builder-0.4.1/
@@ -323,7 +323,7 @@ yaml
 file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/yaml-3.1.2/
 file:///Users/guilhermemessa/.pub-cache/hosted/pub.dev/yaml-3.1.2/lib/
 application_consultacep
-2.12
+3.2
 file:///Users/guilhermemessa/Documents/app_cep/
 file:///Users/guilhermemessa/Documents/app_cep/lib/
 sky_engine
