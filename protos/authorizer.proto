@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package authorizer;
+
+service AuthorizerService {
+  rpc CreateAuthorizer(CreateAuthorizerRequest) returns (CreateAuthorizerResponse) {}
+  rpc UpdateVerification(UpdateVerificationRequest) returns (UpdateVerificationResponse) {}
+  rpc CancelAuthorizer(CancelAuthorizerRequest) returns (common.Empty) {}
+  rpc RefreshVerification(RefreshVerificationRequest) returns (RefreshVerificationResponse) {}
+}
+
+message Secret {
+  string token = 1; // SECRET_TYPE_TOKEN
+  string password = 2; // SECRET_TYPE_PASSWORD
+}
+
+message Verification {
+  string verificationID = 1;
+  int32 remainingTries = 2;
+  int32 expirationTTL = 3;
+  int32 order = 4;
+  bool canRefresh = 5;
+  string iat = 6;
+  string exp = 7;
+  VerificationStatus status = 8;
+  VerifyType verificationType = 9;
+  SecretType secretType = 10;
+}
+
+message CreateAuthorizerRequest {
+  string userID = 1;
+  string name = 2;
+}
+
+message CreateAuthorizerResponse {
+  string authorizerID = 1;
+  string userID = 2;
+  string name = 3;
+  int32 expirationTTL = 4;
+  string iat = 5;
+  string exp = 6;
+  repeated Verification verificationList = 7;
+}
+
+message UpdateVerificationRequest {
+  string authorizerID = 1;
+  string verificationID = 2;
+  string userID = 3;
+  Secret secret = 4;
+}
+
+message UpdateVerificationResponse {
+  VerificationStatus status = 1;
+}
+
+message CancelAuthorizerRequest{
+  string authorizerID = 1;
+  string userID = 2;
+  string name = 3;
+}
+
+message RefreshVerificationRequest {
+  string authorizerID = 1;
+  string verificationID = 2;
+  string userID = 3;
+  string name = 4;
+}
+
+message RefreshVerificationResponse {
+  Verification verification = 1;
+}
+
+enum VerifyType {
+  VERIFY_TYPE_NONE = 0;
+  VERIFY_TYPE_EMAIL_TOKEN = 1;
+  VERIFY_TYPE_CONFIRM_EMAIL = 3;
+  VERIFY_TYPE_PHONE_TOKEN = 4;
+  VERIFY_TYPE_CONFIRM_PHONE = 5;
+  VERIFY_TYPE_CONFIRM_PASSWORD = 6;
+}
+
+enum VerificationStatus {
+  VERIFICATION_STATUS_NONE = 0;
+  VERIFICATION_STATUS_CONFIRMED = 1;
+  VERIFICATION_STATUS_INVALID = 2;
+  VERIFICATION_STATUS_EXPIRED = 3;
+  VERIFICATION_STATUS_PENDING = 4;
+  VERIFICATION_STATUS_WAITING = 5;
+}
+
+enum SecretType {
+  SECRET_TYPE_NONE = 0;
+  SECRET_TYPE_TOKEN = 1;
+  SECRET_TYPE_PASSWORD = 2;
+}
