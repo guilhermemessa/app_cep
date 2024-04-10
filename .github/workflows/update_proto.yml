@@ -20,7 +20,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    # Use installed Dart SDK
+    # Use installed Dart SDK and add it to PATH
     - name: Use installed Dart SDK
       run: export PATH="$PATH":"/path/to/dart-sdk/bin"
 
@@ -39,8 +39,8 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
+        git config --local user.email "guillhermemessa@hotmail.com"
+        git config --local user.name "Guilherme Messa"
         git add .
         git commit -m "Update Dart files generated from Proto"
         git push
