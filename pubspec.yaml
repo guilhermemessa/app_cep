@@ -1,5 +1,5 @@
-name: grcp_proto
-description: Centralized repository for storing protocol buffer files used across project services.
+name: app_cep
+description: testando
 
 # Versão do projeto
 version: 1.0.0

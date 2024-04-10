@@ -398,13 +398,13 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "grcp_proto",
+      "name": "app_cep",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2024-04-10T19:20:57.090606Z",
+  "generated": "2024-04-10T19:55:00.132516Z",
   "generator": "pub",
   "generatorVersion": "3.2.6"
 }

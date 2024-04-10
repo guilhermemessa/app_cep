@@ -34,7 +34,3 @@ jobs:
       # Verificar a versão do SDK do Dart (opcional)
       - name: Verify Dart SDK version
         run: dart --version
-
-      # Listar o conteúdo do diretório onde o SDK do Dart foi instalado
-      - name: List Dart SDK directory contents
-        run: ls -l /opt/hostedtoolcache/dart-sdk

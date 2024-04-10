@@ -24,11 +24,11 @@ jobs:
     - name: Use installed Dart SDK
       run: export PATH="$PATH":"/path/to/dart-sdk/bin"
 
-    # Instalar o SDK do Flutter
+    # Instalar o SDK do Flutter (substitua a versão pelo que você precisa)
     - name: Install Flutter SDK
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '2.10.5'  # Substitua pela versão do Flutter que você está usando
+        flutter-version: '2.19.0'  # Substitua pela versão do Flutter que você está usando
 
     # Restante do seu fluxo de trabalho
     - name: Flutter pub get
