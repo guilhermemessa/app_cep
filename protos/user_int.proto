@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+import "common.proto";
+import "user.proto";
+
+package user_int;
+
+
+service UserIntService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc ConfirmPassword (ConfirmPasswordRequest) returns (ConfirmPasswordResponse);
+  rpc BlockUser (BlockUserRequest) returns (common.Empty);
+  rpc UnblockUser (BlockUserRequest) returns (common.Empty);
+  rpc ChangeUserStatus (ChangeUserStatusRequest) returns (common.Empty);
+}
+
+message CreateUserRequest{
+  string userID = 1;
+  string password = 2;
+  string details = 3;
+}
+
+message CreateUserResponse{
+  string userID = 1;
+  user.StatusEvent status = 2;
+  string createdAt = 3;
+}
+
+message ConfirmPasswordRequest{
+  string userID = 1;
+  string password = 2;
+}
+
+message ConfirmPasswordResponse{
+  bool hasConfirmed = 1;
+  int32 passwordTries = 2;
+  repeated user.BlockReason blockReason = 3;
+  user.CancelReason cancelReason = 4;
+}
+
+message BlockUserRequest {
+  string userID = 1;
+  string details = 2;
+  user.BlockReason blockReason = 3;
+}
+
+message StatusHistory{
+  user.StatusEvent status = 1;
+  user.BlockReason blockReason = 2;
+  user.CancelReason cancelReason = 3;
+  string details = 4;
+  string eventDatetime = 5;
+}
+
+message ChangeUserStatusRequest {
+  string userID = 1;
+  user.StatusEvent newStatus = 2;
+  user.CancelReason cancelReason = 3;
+  string details = 4;
+}
