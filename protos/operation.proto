@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package operation;
+
+service OperationService {
+    rpc GetOperationList (GetOperationListRequest) returns (GetOperationListResponse);
+}
+
+message Transaction {
+    string id = 1;
+    string date = 2;
+    int32 amount = 3;
+    int32 amountDue = 4;
+    int32 amountPaid = 5;
+}
+
+message GetOperationListRequest {
+    string userID = 1;
+    int32 page = 2;
+    int32 pageSize = 3;
+}
+
+message GetOperationListResponse {
+    repeated Transaction operationList = 1;
+}

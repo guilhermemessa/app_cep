@@ -43,5 +43,5 @@ jobs:
         git add -A  
         git commit -m "Update Dart files generated from Proto"
         git tag -a v1.0.0${{ github.run_number }} -m "Update Dart files generated from Proto"
-        git push origin main --tags  # Empurra as alterações para a branch main e as tags para o repositório remoto
+        git push origin main --tags  
     
