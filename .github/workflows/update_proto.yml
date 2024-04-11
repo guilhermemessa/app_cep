@@ -34,12 +34,14 @@ jobs:
       run: flutter pub get
 
     - name: Run protoc_builder
-      run: flutter pub run build_runner build 
+      run: flutter pub run build_runner build --delete-conflicting-outputs
 
     - name: Commit and push changes
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
-        git add .
+        git add -A  
+        git commit -m "Update Dart files generated from Proto"
         git tag -a v1.0.0${{ github.run_number }} -m "Update Dart files generated from Proto"
-        git push origin --tag
+        git push origin main --tags  # Empurra as alterações para a branch main e as tags para o repositório remoto
+    
