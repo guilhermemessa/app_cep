@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package documents;
+
+service DocumentService {
+  rpc ValidateDocumentVersion (ValidateDocumentVersionRequest) returns (ValidateDocumentVersionResponse);
+}
+
+message ValidateDocumentVersionRequest {
+  string name = 1;
+  int32 version = 2;
+}
+
+message ValidateDocumentVersionResponse{
+  bool shouldBeAccepted = 1;
+  int32 version  = 2;
+}
