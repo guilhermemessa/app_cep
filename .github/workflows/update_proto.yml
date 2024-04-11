@@ -36,6 +36,9 @@ jobs:
     - name: Run protoc_builder
       run: flutter pub run build_runner build 
 
+    - name: Generate Proto exports
+      run: dart gen_proto.dart
+
     - name: Commit and push changes
       run: |
         git config --local user.email "actions@github.com"
@@ -44,4 +47,3 @@ jobs:
         git commit -m "Update Dart files generated from Proto"
         git tag -a v1.0.0${{ github.run_number }} -m "Update Dart files generated from Proto"
         git push origin main --tags  
-    
